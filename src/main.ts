@@ -8,6 +8,7 @@ import rateLimit from 'express-rate-limit';
 import { AppModule } from './app.module';
 import { NestExpressApplication } from '@nestjs/platform-express';
 import { CustomLoggerService } from './infrastructure/logging/logger.service';
+import { DatabaseInitService } from './infrastructure/database/database-init.service';
 
 async function bootstrap() {
     const app = await NestFactory.create<NestExpressApplication>(AppModule, {
@@ -54,6 +55,16 @@ async function bootstrap() {
     SwaggerModule.setup('api-docs', app, document);
 
     const logger = app.get(CustomLoggerService);
+
+    // Initialize database (create tables and seed data if needed)
+    try {
+        const databaseInitService = app.get(DatabaseInitService);
+        await databaseInitService.initializeDatabase();
+    } catch (error) {
+        logger.error('Failed to initialize database:', error);
+        process.exit(1);
+    }
+
     const port = process.env.PORT || 3000;
     await app.listen(port);
 
