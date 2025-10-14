@@ -28,7 +28,6 @@ debug.log
 error.log
 docker-compose.override.yml
 *.pid
-*.seed
 prisma/dev.db
 prisma/migrations/
 coverage/

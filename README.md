@@ -158,8 +158,6 @@ src/
 │       └── resource-response.dto.ts
 ├── modules/
 │   └── booking.module.ts
-├── scripts/
-│   └── seed.ts
 ├── app.module.ts
 └── main.ts
 ```
@@ -218,6 +216,8 @@ src/
 - ✅ **Pagination System**: Efficient data retrieval with pagination support
 - ✅ **Swagger Documentation**: Interactive API documentation
 - ✅ **Comprehensive Testing**: Unit and integration tests
+- ✅ **Auto Database Setup**: Automatic table creation and data seeding
+- ✅ **Zero Configuration**: No manual database setup required
 
 ### Domain Events & Audit Trail
 
@@ -359,15 +359,24 @@ npm install
 # 3. Environment setup
 cp env.example .env
 
-# 4. Database setup
-createdb blu_reserve
-
-# 5. Start the application
+# 4. Start the application (Database will be auto-initialized)
 npm run start:dev
 
-# 6. Seed test data (optional)
-npm run seed
 ```
+
+### 🚀 Automatic Database Initialization
+
+BlueReserve features **automatic database setup** that eliminates manual configuration:
+
+- **✅ Auto Table Creation**: TypeORM automatically creates all required tables
+- **✅ Auto Seeding**: Sample data is automatically created on first run
+- **✅ Smart Detection**: Only seeds if database is empty (prevents duplicates)
+- **✅ Zero Configuration**: No manual database setup required
+
+**Sample Data Created Automatically:**
+
+- **3 Users**: john.doe@example.com, jane.smith@example.com, bob.johnson@example.com
+- **5 Resources**: Conference Room A & B, Hotel Room 101, Event Hall, Workspace Desk 1
 
 ### Environment Variables
 
@@ -401,15 +410,26 @@ npm run test:cov
 npm run start:debug
 ```
 
-### Docker Setup (Alternative)
+### Docker Setup (Recommended)
 
 ```bash
-# Build and start with Docker Compose
-docker-compose up --build -d
+# Build and start with Docker Compose (includes automatic database initialization)
+docker-compose up -d
+
+# View logs to see automatic database setup
+docker-compose logs -f blu-reserve
+```
+
+**Docker Benefits:**
+
+- **✅ One Command Setup**: Single command starts everything
+- **✅ Automatic Database**: PostgreSQL container with auto-initialization
+- **✅ Environment Ready**: All environment variables pre-configured
+- **✅ Production Ready**: Same setup for development and production
 
 # The API will be available at http://localhost:3000
+
 # Swagger documentation at http://localhost:3000/api-docs
-```
 
 ---
 
@@ -624,19 +644,7 @@ npm run start:dev
 
 The API will be available at `http://localhost:3000`
 
-#### 2. Seed Test Data
-
-```bash
-# Create sample users and resources
-npm run seed
-```
-
-This creates:
-
-- 3 sample users (john.doe@example.com, jane.smith@example.com, bob.johnson@example.com)
-- 5 sample resources (Conference Rooms, Hotel Room, Event Hall, Workspace)
-
-#### 3. Access Swagger Documentation
+#### 2. Access Swagger Documentation
 
 Open your browser and navigate to: `http://localhost:3000/api-docs`
 
@@ -1392,14 +1400,49 @@ open http://localhost:3000/api-docs
 
 #### Q: How do I reset the database?
 
-A:
+A: With automatic database initialization, you have several options:
+
+**Option 1: Docker (Recommended)**
+
+```bash
+# Stop containers and remove volumes (this deletes all data)
+docker-compose down -v
+docker-compose up -d
+```
+
+**Option 2: Manual Database Reset**
 
 ```bash
 # Drop and recreate database
 dropdb blu_reserve
 createdb blu_reserve
-npm run seed
+# Restart application - it will auto-seed
+npm run start:dev
 ```
+
+**Option 3: Clear Specific Tables**
+
+```bash
+# Connect to database and clear tables
+psql -d blu_reserve -c "TRUNCATE users, resources, bookings, booking_history CASCADE;"
+# Restart application - it will auto-seed
+npm run start:dev
+```
+
+#### Q: How does automatic database initialization work?
+
+A: The system automatically:
+
+1. **Creates Tables**: TypeORM synchronizes your entities to create all required tables
+2. **Checks for Data**: On startup, it checks if the database has any users
+3. **Auto-Seeds**: If empty, it creates sample users and resources automatically
+4. **Smart Detection**: Only seeds once - won't duplicate data on subsequent starts
+
+**What gets created automatically:**
+
+- 3 sample users with realistic data
+- 5 sample resources (meeting rooms, hotel room, event hall, workspace)
+- All necessary database tables and relationships
 
 #### Q: How do I run tests?
 

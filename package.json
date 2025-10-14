@@ -10,8 +10,7 @@
     "start:debug": "nest start --debug --watch",
     "test": "jest",
     "test:watch": "jest --watch",
-    "test:cov": "jest --coverage",
-    "seed": "ts-node src/scripts/seed.ts"
+    "test:cov": "jest --coverage"
   },
   "author": "Erfan Atayi <erfuuan@gmail.com>",
   "dependencies": {
