@@ -1,0 +1,418 @@
+{
+    "info": {
+        "name": "BluReserve API",
+        "description": "A comprehensive NestJS BluReserve System with CQRS and clean architecture",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+        "version": "1.0.0"
+    },
+    "variable": [
+        {
+            "key": "baseUrl",
+            "value": "http://localhost:3000/api/v1",
+            "type": "string"
+        },
+        {
+            "key": "sampleBookingId",
+            "value": "a3db9897-93d3-46c1-8939-02d33b029958",
+            "type": "string"
+        }
+    ],
+    "item": [
+        {
+            "name": "Reservations",
+            "item": [
+                {
+                    "name": "Create Reservation",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n  \"userId\": \"a3db9897-93d3-46c1-8939-02d33b029950\",\n  \"resourceId\": \"a3db9897-93d3-46c1-8939-02d33b029953\",\n  \"startTime\": \"2024-01-15T10:00:00Z\",\n  \"endTime\": \"2024-01-15T12:00:00Z\",\n  \"notes\": \"Team meeting\"\n}"
+                        },
+                        "url": {
+                            "raw": "{{baseUrl}}/reservations",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "reservations"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Get Reservation by ID",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}/reservations/{{sampleBookingId}}",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "reservations",
+                                "{{sampleBookingId}}"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Get User Reservations",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}/reservations/user/a3db9897-93d3-46c1-8939-02d33b029950",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "reservations",
+                                "user",
+                                "a3db9897-93d3-46c1-8939-02d33b029950"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Get User Reservations by Status",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}/reservations/user/a3db9897-93d3-46c1-8939-02d33b029950?status=pending",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "reservations",
+                                "user",
+                                "a3db9897-93d3-46c1-8939-02d33b029950"
+                            ],
+                            "query": [
+                                {
+                                    "key": "status",
+                                    "value": "pending"
+                                }
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Get User Reservations with Pagination",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}/reservations/user/a3db9897-93d3-46c1-8939-02d33b029950?page=1&limit=5&sortBy=createdAt&sortOrder=DESC",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "reservations",
+                                "user",
+                                "a3db9897-93d3-46c1-8939-02d33b029950"
+                            ],
+                            "query": [
+                                {
+                                    "key": "page",
+                                    "value": "1"
+                                },
+                                {
+                                    "key": "limit",
+                                    "value": "5"
+                                },
+                                {
+                                    "key": "sortBy",
+                                    "value": "createdAt"
+                                },
+                                {
+                                    "key": "sortOrder",
+                                    "value": "DESC"
+                                }
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Get User Reservations by Status with Pagination",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}/reservations/user/a3db9897-93d3-46c1-8939-02d33b029950?status=pending&page=1&limit=10&sortBy=startTime&sortOrder=ASC",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "reservations",
+                                "user",
+                                "a3db9897-93d3-46c1-8939-02d33b029950"
+                            ],
+                            "query": [
+                                {
+                                    "key": "status",
+                                    "value": "pending"
+                                },
+                                {
+                                    "key": "page",
+                                    "value": "1"
+                                },
+                                {
+                                    "key": "limit",
+                                    "value": "10"
+                                },
+                                {
+                                    "key": "sortBy",
+                                    "value": "startTime"
+                                },
+                                {
+                                    "key": "sortOrder",
+                                    "value": "ASC"
+                                }
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Confirm Reservation",
+                    "request": {
+                        "method": "PUT",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}/reservations/{{sampleBookingId}}/confirm",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "reservations",
+                                "{{sampleBookingId}}",
+                                "confirm"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Cancel Reservation",
+                    "request": {
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n  \"reason\": \"Change of plans\"\n}"
+                        },
+                        "url": {
+                            "raw": "{{baseUrl}}/reservations/{{sampleBookingId}}",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "reservations",
+                                "{{sampleBookingId}}"
+                            ]
+                        }
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "Resources",
+            "item": [
+                {
+                    "name": "Get Available Resources",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}/reservations/available-resources?startTime=2024-01-15T10:00:00Z&endTime=2024-01-15T12:00:00Z",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "reservations",
+                                "available-resources"
+                            ],
+                            "query": [
+                                {
+                                    "key": "startTime",
+                                    "value": "2024-01-15T10:00:00Z"
+                                },
+                                {
+                                    "key": "endTime",
+                                    "value": "2024-01-15T12:00:00Z"
+                                }
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Get Available Resources by Type",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}/reservations/available-resources?startTime=2024-01-15T10:00:00Z&endTime=2024-01-15T12:00:00Z&type=meeting_room",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "reservations",
+                                "available-resources"
+                            ],
+                            "query": [
+                                {
+                                    "key": "startTime",
+                                    "value": "2024-01-15T10:00:00Z"
+                                },
+                                {
+                                    "key": "endTime",
+                                    "value": "2024-01-15T12:00:00Z"
+                                },
+                                {
+                                    "key": "type",
+                                    "value": "meeting_room"
+                                }
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Get Available Resources with Pagination",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}/reservations/available-resources?startTime=2024-01-15T10:00:00Z&endTime=2024-01-15T12:00:00Z&page=1&limit=3&sortBy=name&sortOrder=ASC",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "reservations",
+                                "available-resources"
+                            ],
+                            "query": [
+                                {
+                                    "key": "startTime",
+                                    "value": "2024-01-15T10:00:00Z"
+                                },
+                                {
+                                    "key": "endTime",
+                                    "value": "2024-01-15T12:00:00Z"
+                                },
+                                {
+                                    "key": "page",
+                                    "value": "1"
+                                },
+                                {
+                                    "key": "limit",
+                                    "value": "3"
+                                },
+                                {
+                                    "key": "sortBy",
+                                    "value": "name"
+                                },
+                                {
+                                    "key": "sortOrder",
+                                    "value": "ASC"
+                                }
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Get Available Resources by Type with Pagination",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}/reservations/available-resources?startTime=2024-01-15T10:00:00Z&endTime=2024-01-15T12:00:00Z&type=meeting_room&page=1&limit=2&sortBy=pricePerHour&sortOrder=ASC",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "reservations",
+                                "available-resources"
+                            ],
+                            "query": [
+                                {
+                                    "key": "startTime",
+                                    "value": "2024-01-15T10:00:00Z"
+                                },
+                                {
+                                    "key": "endTime",
+                                    "value": "2024-01-15T12:00:00Z"
+                                },
+                                {
+                                    "key": "type",
+                                    "value": "meeting_room"
+                                },
+                                {
+                                    "key": "page",
+                                    "value": "1"
+                                },
+                                {
+                                    "key": "limit",
+                                    "value": "2"
+                                },
+                                {
+                                    "key": "sortBy",
+                                    "value": "pricePerHour"
+                                },
+                                {
+                                    "key": "sortOrder",
+                                    "value": "ASC"
+                                }
+                            ]
+                        }
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "Health Check",
+            "item": [
+                {
+                    "name": "API Health",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}/health",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "health"
+                            ]
+                        }
+                    },
+                    "response": []
+                }
+            ]
+        }
+    ]
+}
