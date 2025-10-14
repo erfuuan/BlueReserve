@@ -427,9 +427,9 @@ docker-compose logs -f blu-reserve
 - **✅ Environment Ready**: All environment variables pre-configured
 - **✅ Production Ready**: Same setup for development and production
 
-# The API will be available at http://localhost:3000
+#### The API will be available at http://localhost:3000
 
-# Swagger documentation at http://localhost:3000/api-docs
+#### Swagger documentation at http://localhost:3000/api-docs
 
 ---
 
