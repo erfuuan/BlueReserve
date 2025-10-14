@@ -43,8 +43,8 @@ async function bootstrap() {
 
     // ------------------ Swagger ------------------
     const config = new DocumentBuilder()
-        .setTitle('BluReserve API')
-        .setDescription('A comprehensive NestJS BluReserve System with CQRS and clean architecture')
+        .setTitle('BlueReserve API')
+        .setDescription('A comprehensive NestJS BlueReserve System with CQRS and clean architecture')
         .setVersion('1.0')
         .addTag('reservations', 'Reservation management endpoints')
         .addTag('resources', 'Resource management endpoints')

@@ -1,7 +1,7 @@
 {
     "info": {
-        "name": "BluReserve API",
-        "description": "A comprehensive NestJS BluReserve System with CQRS and clean architecture",
+        "name": "BlueReserve API",
+        "description": "A comprehensive NestJS BlueReserve System with CQRS and clean architecture",
         "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
         "version": "1.0.0"
     },

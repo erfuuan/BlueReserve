@@ -1,4 +1,4 @@
-# BluReserve - Comprehensive NestJS Booking System
+# BlueReserve - Comprehensive NestJS Booking System
 
 A comprehensive reservation management system built with NestJS, implementing Clean Architecture principles, CQRS pattern, and Domain-Driven Design. This system enables users to create, manage, and track reservations for various resources including meeting rooms, hotel rooms, event tickets, conference halls, workspaces, and vehicles.
 
@@ -23,9 +23,9 @@ A comprehensive reservation management system built with NestJS, implementing Cl
 
 ## 🎯 Project Overview
 
-### What is BluReserve?
+### What is BlueReserve?
 
-BluReserve is a sophisticated reservation management system that demonstrates enterprise-level Node.js development practices. It showcases Clean Architecture, CQRS pattern implementation, and comprehensive domain modeling for a real-world booking scenario.
+BlueReserve is a sophisticated reservation management system that demonstrates enterprise-level Node.js development practices. It showcases Clean Architecture, CQRS pattern implementation, and comprehensive domain modeling for a real-world booking scenario.
 
 ### Primary Use Cases
 
@@ -351,7 +351,7 @@ The system implements a comprehensive pagination system for efficient data retri
 ```bash
 # 1. Clone the repository
 git clone <repository-url>
-cd BluReserve
+cd BlueReserve
 
 # 2. Install dependencies
 npm install
@@ -1541,7 +1541,7 @@ For questions or support, please contact the development team or create an issue
 
 ---
 
-**Built with ❤️ using NestJS, TypeScript, and Clean Architecture principles for BluReserve**
+**Built with ❤️ using NestJS, TypeScript, and Clean Architecture principles for BlueReserve**
 
 **Documentation Version**: 1.0.0  
 **Last Updated**: January 2024  

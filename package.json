@@ -1,7 +1,7 @@
 {
   "name": "blu-reserve",
   "version": "1.0.0",
-  "description": "A comprehensive NestJS BluReserve System with CQRS and clean architecture",
+  "description": "A comprehensive NestJS BlueReserve System with CQRS and clean architecture",
   "main": "dist/main.js",
   "scripts": {
     "build": "nest build",
