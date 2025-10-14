@@ -27,7 +27,7 @@ services:
     image: blu-reserve:latest
     container_name: blu-reserve-api
     environment:
-      NODE_ENV: production
+      NODE_ENV: development
       DB_HOST: postgres
       DB_PORT: 5432
       DB_USERNAME: postgres
